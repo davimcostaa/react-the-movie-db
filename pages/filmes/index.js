@@ -12,8 +12,7 @@ const filmes = ({filmes}) => {
     {filmes.map(item => (
             <div>
             <p>{item.title}</p>
-            <img src='https://image.tmdb.org/t/p/original/${item.backdrop_path}'/>
-
+            <img src={'https://image.tmdb.org/t/p/original/' + item.backdrop_path}/>
             </div>  
 ))} 
 
