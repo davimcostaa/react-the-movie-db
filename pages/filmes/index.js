@@ -33,6 +33,7 @@ export default filmes
 export async function getServerSideProps(context) {
   const resultado = await apiFilmes.get("/movie/popular?language=pt-br")
   const filmes = resultado.data.results
+    
 
   return {
     props: {
