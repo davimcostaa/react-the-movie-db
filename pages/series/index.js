@@ -4,19 +4,18 @@ import Pagina from '../../components/Pagina'
 import apiFilmes from '../../services/apiFilmes'
 import Link from 'next/link'
 
-const filmes = ({ filmes }) => {
+const series = ({ series }) => {
   return (
-    <Pagina titulo={'Filmes'}>
+    <Pagina titulo={'TV'} >
       <Row md={4}>
-        {filmes.map(item => (
+        {series.map(item => (
           <Col>
             <Card>
               <Card.Img src={"https://image.tmdb.org/t/p/original/" + item.backdrop_path} />
               <Card.Body>
-                <Card.Title>{item.title}</Card.Title>
+                <Card.Title>{item.name}</Card.Title>
                 <p>Nota: {item.vote_average}</p>
-                <p>Data de lançamento: {item.release_date}</p>
-                <Link className='btn btn-danger' href={'/filmes/' + item.id}>Detalhes</Link>
+                <Link className='btn btn-danger' href={'/series/' + item.id}>Detalhes</Link>
               </Card.Body>
             </Card>
           </Col>
@@ -27,16 +26,16 @@ const filmes = ({ filmes }) => {
   )
 }
 
-export default filmes
+export default series
 
 export async function getServerSideProps(context) {
-  const resultado = await apiFilmes.get("/movie/popular?language=pt-br")
-  const filmes = resultado.data.results
+  const resultado = await apiFilmes.get("/tv/popular?language=pt-br")
+  const series = resultado.data.results
     
 
   return {
     props: {
-      filmes
+      series
     }, // will be passed to the page component as props
   }
 }
