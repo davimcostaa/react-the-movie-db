@@ -4,23 +4,25 @@ import { Button, CardImg, Col, Row } from 'react-bootstrap'
 import React from 'react'
 import Link from 'next/link'
 
-const Detalhes = ({ filme, cast }) => {
+const Detalhes = ({ serie, cast }) => {
   return (
-    <Pagina titulo={filme.title}>
+    <Pagina titulo={serie.title}>
       <Row>
         <Col md={3}>
-          <CardImg src={"https://image.tmdb.org/t/p/original/" + filme.poster_path} />
+          <CardImg src={"https://image.tmdb.org/t/p/original/" + serie.poster_path} />
         </Col>
 
         <Col md={9}>
-          <p><strong>Orçamento: </strong> {filme.budget}</p>
-          <p><strong>Data de lançamento: </strong> {filme.release_date}</p>
-          <p><strong>Duração: </strong> {filme.runtime} min</p>
-          <p><strong>Nota: </strong> {filme.vote_average}</p>
-          <p><strong>Descrição: </strong> {filme.overview}</p>
+          <p><strong>Data da exibição do primeiro episódio: </strong> {serie.first_air_date}</p>
+          <p><strong>Data da exibição do último episódio: </strong> {serie.last_air_date}</p>
+          <p><strong>Duração: </strong> {serie.episode_run_time} min</p>
+          <p><strong>Nota: </strong> {serie.vote_average}</p>
+          <p><strong>Número de episódios: </strong> {serie.number_of_episodes}</p>
+          <p><strong>Número de temporadas: </strong> {serie.number_of_seasons}</p>
+          <p><strong>Descrição: </strong> {serie.overview}</p>
           <div>
         <ul>
-            {filme.genres.map(
+            {serie.genres.map(
               item => (
                 <li>{item.name}</li>
               ))}
@@ -53,15 +55,15 @@ export default Detalhes
 export async function getServerSideProps(context) {
 
   const id = context.params.id
-  const resultado = await apiFilmes.get("/movie/" + id + "?language=pt-br")
-  const filme = resultado.data
+  const resultado = await apiFilmes.get("/tv/" + id + "?language=pt-br")
+  const serie = resultado.data
 
-  const atores = await apiFilmes.get("/movie/" + id + "/credits?language=pt-br")
+  const atores = await apiFilmes.get("/tv/" + id + "/credits?language=pt-br")
   const cast = atores.data.cast
 
   return {
     props: {
-      filme, 
+      serie, 
       cast,
     }, // will be passed to the page component as props
   }

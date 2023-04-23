@@ -16,7 +16,6 @@ const filmes = ({ filmes }) => {
                 <Card.Title>{item.title}</Card.Title>
                 <p>Nota: {item.vote_average}</p>
                 <p>Data de lançamento: {item.release_date}</p>
-                <Button variant="primary">Nota: {item.vote_average}</Button>
                 <Link className='btn btn-danger' href={'/filmes/' + item.id}>Detalhes</Link>
               </Card.Body>
             </Card>
