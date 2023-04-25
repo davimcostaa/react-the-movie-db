@@ -1,4 +1,4 @@
-import { Card, Row, Col } from 'react-bootstrap'
+import { Card, Button, Row, Col } from 'react-bootstrap'
 import React from 'react'
 import Pagina from '../../components/Pagina'
 import apiFilmes from '../../services/apiFilmes'
@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 const filmes = ({ filmes }) => {
   return (
-    <Pagina titulo={'Filmes Populares'}>
+    <Pagina titulo={'Lançamentos'}>
       <Row md={4}>
         {filmes.map(item => (
           <Col>
@@ -30,9 +30,9 @@ const filmes = ({ filmes }) => {
 export default filmes
 
 export async function getServerSideProps(context) {
-  const resultado = await apiFilmes.get("/movie/popular?language=pt-br")
+  const resultado = await apiFilmes.get("/movie/upcoming?language=pt-br")
   const filmes = resultado.data.results
-    
+  
 
   return {
     props: {
