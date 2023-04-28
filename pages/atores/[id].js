@@ -3,6 +3,7 @@ import apiFilmes from '@/services/apiFilmes'
 import { Button, CardImg, Col, Row } from 'react-bootstrap'
 import React from 'react'
 import Link from 'next/link'
+import Galeria from '@/components/Galeria'
 
 const Detalhes = ({ ator, fotosAtor, filmesAtor, seriesAtor }) => {
   return (
@@ -24,32 +25,9 @@ const Detalhes = ({ ator, fotosAtor, filmesAtor, seriesAtor }) => {
         </Col>
         </Row>
 
-        <h1> Imagens</h1>
-
-
-      <Row>
-
-      {fotosAtor.map( foto => (
-      <Col md={1} >
-          <CardImg style={{ marginBottom: '20px' }} src={"https://image.tmdb.org/t/p/original/" + foto.file_path} />
-      </Col>
-))}
-      </Row> 
-
-      <h1> Filmes em que atuou</h1>
-
-      <Row>
-
-      {filmesAtor.map( filme => (
+      <Galeria titulo="Imagens" lista={fotosAtor} caminhoFoto='file_path' size={1}  /> 
+      <Galeria titulo="Filmes em que atuou" lista={filmesAtor} caminhoFoto='poster_path' link='/filmes/' /> 
       
-      <Col md={2} >
-          <Link href={'/filmes/' + filme.id}>
-            <CardImg style={{ marginBottom: '20px' }} src={"https://image.tmdb.org/t/p/original/" + filme.poster_path} />
-          </Link>  
-      </Col>
-      ))}
-      
-      </Row> 
 
       <h1> Séries em que atuou</h1>
 

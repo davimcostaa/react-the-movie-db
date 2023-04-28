@@ -3,6 +3,7 @@ import apiFilmes from '@/services/apiFilmes'
 import { Button, CardImg, Col, Row } from 'react-bootstrap'
 import React from 'react'
 import Link from 'next/link'
+import Galeria from '@/components/Galeria'
 
 const Detalhes = ({ filme, cast }) => {
   return (
@@ -31,18 +32,8 @@ const Detalhes = ({ filme, cast }) => {
 
       </Row>
 
-      <h2> Elenco</h2>         
-        <Row>
-           
-      {cast.map( ator => (
-         <Col md={2}>
-          <Link href={ '/atores/' + ator.id}>
-           <CardImg title={ator.name} style={{ marginBottom: '20px' }} src={"https://image.tmdb.org/t/p/original/" + ator.profile_path} 
-           />
-           </Link>
-         </Col>
-      ))}
-  </Row>     
+      <Galeria titulo="Elenco" lista={cast} caminhoFoto='profile_path' link='/atores/' /> 
+
     </Pagina>
   )
 }

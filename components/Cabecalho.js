@@ -1,4 +1,3 @@
-import React from 'react'
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
 
 const Cabecalho = () => {
@@ -9,7 +8,6 @@ const Cabecalho = () => {
           <Navbar.Brand href="/filmes">Filmes</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="/atores">Atores</Nav.Link>
-            <Nav.Link href="/series">Séries</Nav.Link>
             <NavDropdown title="Filmes" id="collasible-nav-dropdown">
               <NavDropdown.Item href="/filmes">Populares</NavDropdown.Item>
               <NavDropdown.Item href="/filmes/lancamentos">Lançamentos</NavDropdown.Item>
